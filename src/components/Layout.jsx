@@ -19,7 +19,7 @@ export default function Layout({ children }) {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate('/');
   };
 
   const getNavItems = () => {
@@ -27,14 +27,14 @@ export default function Layout({ children }) {
 
     if (user.role === 'admin') {
       return [
-        { path: '/', label: 'Dashboard', icon: <LayoutDashboard size={18} /> },
+        { path: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard size={18} /> },
         { path: '/analytics', label: 'Analytics', icon: <BarChart3 size={18} /> }
       ];
     }
     
     if (user.role === 'teacher') {
       return [
-        { path: '/', label: 'My Classes', icon: <GraduationCap size={18} /> },
+        { path: '/dashboard', label: 'My Classes', icon: <GraduationCap size={18} /> },
         { path: '/create-homework', label: 'Create Homework', icon: <PlusCircle size={18} /> },
         { path: '/analytics', label: 'Analytics', icon: <BarChart3 size={18} /> }
       ];
@@ -42,7 +42,7 @@ export default function Layout({ children }) {
     
     if (user.role === 'student') {
       return [
-        { path: '/', label: 'My Homework', icon: <BookOpen size={18} /> },
+        { path: '/dashboard', label: 'My Homework', icon: <BookOpen size={18} /> },
         { path: '/homework', label: 'All Homework', icon: <FileText size={18} /> },
         { path: '/analytics', label: 'Analytics', icon: <BarChart3 size={18} /> }
       ];
@@ -62,16 +62,16 @@ export default function Layout({ children }) {
             
             {/* Logo + Nav Items */}
             <div className="flex items-center space-x-4 lg:space-x-8">
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+              <Link to="/dashboard" className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
                 HomeworkHub
-              </h1>
+              </Link>
               <div className="hidden md:flex space-x-1 lg:space-x-4">
                 {getNavItems().map(item => (
                   <Link
                     key={item.path}
                     to={item.path}
                     className={`flex items-center gap-2 px-3 py-2 rounded-lg font-medium transition-all duration-200 text-sm lg:text-base ${
-                      location.pathname === item.path
+                      location.pathname === item.path || (item.path === '/dashboard' && location.pathname === '/')
                         ? 'bg-blue-50 text-blue-700 border border-blue-200'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
