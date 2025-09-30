@@ -18,13 +18,18 @@ export default function Register() {
 
   const loadClasses = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/public/classes');
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/public/classes`);
       if (response.ok) {
         const data = await response.json();
-        setAvailableClasses(data.classes);
+        setAvailableClasses(data.classes || []);
+      } else {
+        // Fallback classes if API fails
+        setAvailableClasses(['Class A', 'Class B', 'Class C']);
       }
     } catch (error) {
       console.error('Failed to load classes:', error);
+      // Fallback classes if API fails
+      setAvailableClasses(['Class A', 'Class B', 'Class C']);
     }
   };
 
