@@ -25,8 +25,8 @@ api.interceptors.response.use(
 );
 
 export const authApi = {
-  login: (email, password, classCode = null) => api.post('/api/auth/login', { email, password, classCode }),
-  register: (payload) => api.post('/api/auth/register', payload),
+  login: (email, password, classCode = null) => api.post('/auth/login', { email, password, classCode }),
+  register: (payload) => api.post('/auth/register', payload),
   getAnalytics: () => api.get('/analytics'),
   get: (url) => api.get(url),
   post: (url, data) => api.post(url, data),
@@ -35,61 +35,61 @@ export const authApi = {
 };
 
 export const classApi = {
-  getClasses: () => api.get('/api/classes'),
-  switchClass: (classCode) => api.post('/api/classes/switch', { classCode }),
+  getClasses: () => api.get('/classes'),
+  switchClass: (classCode) => api.post('/classes/switch', { classCode }),
 };
 
 export const adminApi = {
-  getAnalytics: () => api.get('/api/admin/analytics'),
-  getUsers: (params) => api.get('/api/admin/users', { params }),
-  toggleUser: (id) => api.patch(`/api/admin/users/${id}/toggle`),
-  deleteUser: (id) => api.delete(`/api/admin/users/${id}`),
-  getHomework: (params) => api.get('/api/admin/homework', { params }),
-  deleteHomework: (id) => api.delete(`/api/admin/homework/${id}`),
-  getSystemStats: () => api.get('/api/admin/system-stats'),
+  getAnalytics: () => api.get('/admin/analytics'),
+  getUsers: (params) => api.get('/admin/users', { params }),
+  toggleUser: (id) => api.patch(`/admin/users/${id}/toggle`),
+  deleteUser: (id) => api.delete(`/admin/users/${id}`),
+  getHomework: (params) => api.get('/admin/homework', { params }),
+  deleteHomework: (id) => api.delete(`/admin/homework/${id}`),
+  getSystemStats: () => api.get('/admin/system-stats'),
 };
 
 export const homeworkApi = {
-  list: (params) => api.get('/api/homework', { params }),
-  create: (formData) => api.post('/api/homework', formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
-  update: (id, formData) => api.put(`/api/homework/${id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
-  remove: (id) => api.delete(`/api/homework/${id}`),
-  submit: (id, formData) => api.post(`/api/homework/${id}/submit`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
-  getSubmissions: (id) => api.get(`/api/homework/${id}/submissions`),
-  gradeSubmission: (id, data) => api.patch(`/api/submissions/${id}/grade`, data),
-  deleteSubmission: (id) => api.delete(`/api/submissions/${id}`),
-  downloadAttachment: (homeworkId, attachmentId) => api.get(`/api/homework/${homeworkId}/attachments/${attachmentId}/download`, { responseType: 'blob' }),
+  list: (params) => api.get('/homework', { params }),
+  create: (formData) => api.post('/homework', formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  update: (id, formData) => api.put(`/homework/${id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  remove: (id) => api.delete(`/homework/${id}`),
+  submit: (id, formData) => api.post(`/homework/${id}/submit`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  getSubmissions: (id) => api.get(`/homework/${id}/submissions`),
+  gradeSubmission: (id, data) => api.patch(`/submissions/${id}/grade`, data),
+  deleteSubmission: (id) => api.delete(`/submissions/${id}`),
+  downloadAttachment: (homeworkId, attachmentId) => api.get(`/homework/${homeworkId}/attachments/${attachmentId}/download`, { responseType: 'blob' }),
 };
 
 export const notificationApi = {
-  list: () => api.get('/api/notifications'),
-  markRead: (id) => api.patch(`/api/notifications/${id}/read`),
+  list: () => api.get('/notifications'),
+  markRead: (id) => api.patch(`/notifications/${id}/read`),
 };
 
 export const discussionApi = {
-  list: (homeworkId) => api.get(`/api/homework/${homeworkId}/discussions`),
-  create: (homeworkId, data) => api.post(`/api/homework/${homeworkId}/discussions`, data),
-  addAnswer: (id, data) => api.post(`/api/discussions/${id}/answers`, data),
-  upvote: (discussionId, answerId) => api.post(`/api/discussions/${discussionId}/answers/${answerId}/upvote`),
+  list: (homeworkId) => api.get(`/homework/${homeworkId}/discussions`),
+  create: (homeworkId, data) => api.post(`/homework/${homeworkId}/discussions`, data),
+  addAnswer: (id, data) => api.post(`/discussions/${id}/answers`, data),
+  upvote: (discussionId, answerId) => api.post(`/discussions/${discussionId}/answers/${answerId}/upvote`),
 };
 
 export const analyticsApi = {
-  general: () => api.get('/api/analytics'),
-  admin: () => api.get('/api/admin/analytics'),
-  teacher: () => api.get('/api/analytics/teacher'),
-  getStudentAnalytics: (params) => api.get('/api/analytics/student', { params }),
-  leaderboard: () => api.get('/api/leaderboard'),
+  general: () => api.get('/analytics'),
+  admin: () => api.get('/admin/analytics'),
+  teacher: () => api.get('/analytics/teacher'),
+  getStudentAnalytics: (params) => api.get('/analytics/student', { params }),
+  leaderboard: () => api.get('/leaderboard'),
 };
 
 export const notesApi = {
-  list: (params) => api.get('/api/notes', { params }),
-  create: (formData) => api.post('/api/notes', formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
-  remove: (id) => api.delete(`/api/notes/${id}`),
+  list: (params) => api.get('/notes', { params }),
+  create: (formData) => api.post('/notes', formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  remove: (id) => api.delete(`/notes/${id}`),
 };
 
 export const aiApi = {
-  summarize: (data) => api.post('/api/ai/summarize', data),
-  chat: (message) => api.post('/api/chat', { message }),
+  summarize: (data) => api.post('/ai/summarize', data),
+  chat: (message) => api.post('/chat', { message }),
 };
 
 export const USERS = {
