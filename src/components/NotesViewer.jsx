@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { authApi } from '../api/client';
 import { FileText, Calendar, User, Download, BookOpen, Sparkles } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const NotesViewer = ({ currentClass }) => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -62,7 +64,7 @@ const NotesViewer = ({ currentClass }) => {
       return (
         <div className="w-full h-32 bg-gray-100 rounded-t-xl flex items-center justify-center relative overflow-hidden">
           <iframe
-            src={`http://localhost:5000/uploads/${pdfAttachment.path}#toolbar=0&navpanes=0&scrollbar=0`}
+            src={`${API_BASE_URL}/uploads/${pdfAttachment.path}#toolbar=0&navpanes=0&scrollbar=0`}
             className="w-full h-full border-0 pointer-events-none"
             title={pdfAttachment.originalName}
           />
@@ -172,7 +174,7 @@ const NotesViewer = ({ currentClass }) => {
                     {note.attachments.map((attachment, index) => (
                       <a
                         key={index}
-                        href={`http://localhost:5000/uploads/${attachment.path}`}
+                        href={`${API_BASE_URL}/uploads/${attachment.path}`}
                         className={`flex items-center gap-3 p-3 rounded-lg transition-colors border ${
                           attachment.type === 'pdf' 
                             ? 'bg-red-50 hover:bg-red-100 border-red-200 text-red-800'

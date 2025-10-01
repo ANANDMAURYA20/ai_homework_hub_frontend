@@ -3,6 +3,8 @@ import { homeworkApi } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import Layout from '../components/Layout';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function HomeworkList() {
   const { user } = useAuth();
   const [list, setList] = useState([]);
@@ -111,7 +113,7 @@ export default function HomeworkList() {
                               {hw.attachments.map((attachment, index) => (
                                 <a
                                   key={index}
-                                  href={`http://localhost:5000/uploads/${attachment.path}`}
+                                  href={`${API_BASE_URL.replace('/api', '')}/uploads/${attachment.path}`}
                                   target="_blank"
                                   rel="noreferrer"
                                   className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm hover:bg-blue-200 transition"

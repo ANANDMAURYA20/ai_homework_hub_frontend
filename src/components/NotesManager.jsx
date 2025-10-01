@@ -13,6 +13,8 @@ import {
   BookOpen
 } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const NotesManager = ({ currentClass }) => {
   const [notes, setNotes] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -227,7 +229,7 @@ const NotesManager = ({ currentClass }) => {
               {pdfAttachment ? (
                 <div className="w-full h-32 bg-gray-100 rounded-t-xl flex items-center justify-center relative overflow-hidden">
                   <iframe
-                    src={`http://localhost:5000/uploads/${pdfAttachment.path}#toolbar=0&navpanes=0&scrollbar=0`}
+                    src={`${API_BASE_URL}/uploads/${pdfAttachment.path}#toolbar=0&navpanes=0&scrollbar=0`}
                     className="w-full h-full border-0 pointer-events-none"
                     title={pdfAttachment.originalName}
                   />
@@ -240,7 +242,7 @@ const NotesManager = ({ currentClass }) => {
               ) : imageAttachment ? (
                 <div className="w-full h-32 bg-gray-100 rounded-t-xl flex items-center justify-center relative overflow-hidden">
                   <img 
-                    src={`http://localhost:5000/uploads/${imageAttachment.path}`}
+                    src={`${API_BASE_URL}/uploads/${imageAttachment.path}`}
                     alt={note.title}
                     className="w-full h-full object-cover"
                   />
