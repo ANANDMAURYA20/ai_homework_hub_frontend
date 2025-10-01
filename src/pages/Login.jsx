@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { classApi } from '../api/client';
-import ApiTest from '../components/ApiTest';
+
 
 export default function Login() {
   const { login } = useAuth();
@@ -22,7 +22,7 @@ export default function Login() {
   const loadClasses = async () => {
     try {
       const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
-      const response = await fetch(`${API_BASE_URL}/api/public/classes`);
+      const response = await fetch(`${API_BASE_URL}/public/classes`);
       if (response.ok) {
         const data = await response.json();
         setAvailableClasses(data.classes || []);
@@ -148,10 +148,7 @@ export default function Login() {
             </p>
           </div>
           
-          {/* Temporary API Test - Remove after testing */}
-          <div className="mt-4">
-            <ApiTest />
-          </div>
+
         </div>
       </div>
     </div>

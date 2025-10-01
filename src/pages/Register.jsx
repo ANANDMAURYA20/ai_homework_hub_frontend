@@ -18,7 +18,7 @@ export default function Register() {
 
   const loadClasses = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/public/classes`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/public/classes`);
       if (response.ok) {
         const data = await response.json();
         setAvailableClasses(data.classes || []);
