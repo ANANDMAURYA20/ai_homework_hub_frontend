@@ -6,13 +6,11 @@ import LandingPage from './pages/LandingPage'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
-import AdminDashboard from './pages/AdminDashboard'
-import TeacherDashboard from './pages/TeacherDashboard'
-import StudentDashboard from './pages/StudentDashboard'
 import Analytics from './pages/Analytics'
 import Pricing from './pages/Pricing'
 import Security from './pages/Security'
 import Features from './pages/Features'
+import Documentation from './pages/Documentation'
 import HomeworkList from './sections/HomeworkList'
 import HomeworkForm from './sections/HomeworkForm'
 import { USERS } from './api/client'
@@ -30,6 +28,8 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/security" element={<Security />} />
           <Route path="/features" element={<Features />} />
+          <Route path="/docs" element={<Documentation />} />
+        
 
           <Route element={<ProtectedRoute />}> 
             <Route path="/dashboard" element={<Dashboard />} />

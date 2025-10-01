@@ -22,7 +22,8 @@ import {
   Star,
   Zap,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  FileText
 } from 'lucide-react';
 
 const LandingPage = () => {
@@ -166,6 +167,10 @@ const LandingPage = () => {
                   <Link to="/features" className="text-gray-300 hover:text-white transition-colors">Features</Link>
                   <Link to="/pricing" className="text-gray-300 hover:text-white transition-colors">Pricing</Link>
                   <Link to="/security" className="text-gray-300 hover:text-white transition-colors">Security</Link>
+                  <Link to="/docs" className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                    <FileText className="h-4 w-4" />
+                    Docs
+                  </Link>
                   {user ? (
                     <>
                       <Link to="/dashboard" className="text-gray-300 hover:text-white transition-colors">
